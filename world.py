@@ -18,11 +18,11 @@ logger = logging.getLogger(__name__)
 class World:
     def __init__(
         self,
-        player_1="random_agent",
+        player_1="student_agent",
         player_2="random_agent",
         board_size=None,
-        display_ui=False,
-        display_delay=2,
+        display_ui=True,
+        display_delay=1,
         display_save=False,
         display_save_path=None,
         autoplay=False,
@@ -53,6 +53,7 @@ class World:
         logger.info("Initialize the game world")
         # Load agents as defined in decorators
         self.player_1_name = player_1
+        
         self.player_2_name = player_2
         if player_1 not in AGENT_REGISTRY:
             raise ValueError(
@@ -448,8 +449,20 @@ class World:
 
 
 if __name__ == "__main__":
-    world = World()
-    is_end, p0_score, p1_score = world.step()
-    while not is_end:
+    p1 = 0
+    p2 = 0
+    num = 1
+
+    for i in range(num):
+        world = World()
         is_end, p0_score, p1_score = world.step()
-    print(p0_score, p1_score)
+        while not is_end:
+            is_end, p0_score, p1_score = world.step()
+        print("game", i, "student:",p0_score, "random:",p1_score)
+        print("student wins", p1, "random wins", p2)
+        if p0_score > p1_score:
+            p1 += 1
+        if p1_score > p0_score:
+            p2 += 1
+    print("student wins", p1, "random wins", p2)
+    print("win rates:", round(p1/num,2))
