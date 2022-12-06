@@ -295,6 +295,18 @@ class StudentAgent(Agent):
 
         def expend(self):
             temp=self.possibleMoves()
+            board_size=self.board.board_size
+            i=0
+            if board_size=5:
+                i=15
+            elif board_size=6:
+                i=8
+            elif board_size=7:
+                i=5
+            elif board_size=8:
+                i=2
+            elif board_size=9:
+                i=1
             for move in temp:
              
                 new_board=self.board.deep_copy() 
@@ -302,7 +314,7 @@ class StudentAgent(Agent):
                 new_board.record()          
                 child=StudentAgent.MCST_Node(new_board,move,self.player)             
                 child.father=self
-                child.simulate(5)
+                child.simulate(i)
                 self.children.append(child)
             
 
