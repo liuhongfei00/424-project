@@ -297,15 +297,15 @@ class StudentAgent(Agent):
             temp=self.possibleMoves()
             board_size=self.board.board_size
             i=0
-            if board_size=5:
+            if board_size==5:
                 i=15
-            elif board_size=6:
+            elif board_size==6:
                 i=8
-            elif board_size=7:
+            elif board_size==7:
                 i=5
-            elif board_size=8:
+            elif board_size==8:
                 i=2
-            elif board_size=9:
+            elif board_size==9:
                 i=1
             for move in temp:
              
